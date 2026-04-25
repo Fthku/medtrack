@@ -2,7 +2,7 @@
   "name": "MedTrack",
   "short_name": "MedTrack",
   "description": "Simple daily medication tracker",
-  "start_url": "/",
+  "start_url": "/medtrack/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0f1117",

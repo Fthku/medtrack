@@ -677,7 +677,7 @@
   load(); render();
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.register('/medtrack/sw.js').catch(() => {});
   }
 </script>
 </body>

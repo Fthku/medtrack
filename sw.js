@@ -1,5 +1,11 @@
 const CACHE = 'medtrack-v1';
-const ASSETS = ['/', '/index.html', '/manifest.json'];
+const ASSETS = [
+  '/medtrack/',
+  '/medtrack/index.html',
+  '/medtrack/manifest.json',
+  '/medtrack/icon-192.png',
+  '/medtrack/icon-512.png'
+];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
