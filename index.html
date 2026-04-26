@@ -28,7 +28,6 @@
       --red-dim: rgba(244,100,95,0.12);
       --blue: #4f9cf9;
       --blue-dim: rgba(79,156,249,0.12);
-      --amber: #f5a623;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
@@ -40,459 +39,180 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
       overscroll-behavior: none;
     }
 
-    body {
-      padding-top: var(--safe-top);
-      padding-bottom: var(--safe-bottom);
-    }
+    body { padding-top: var(--safe-top); padding-bottom: var(--safe-bottom); }
 
-    .app {
-      max-width: 430px;
-      margin: 0 auto;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-    }
+    .app { max-width: 430px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; }
 
-    /* ---- TOP BAR ---- */
     .topbar {
       padding: 18px 20px 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      position: sticky;
-      top: var(--safe-top);
-      background: var(--bg);
-      z-index: 10;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      position: sticky; top: var(--safe-top);
+      background: var(--bg); z-index: 10;
       border-bottom: 1px solid var(--border);
     }
 
-    .topbar-left h1 {
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: -0.4px;
-      color: var(--text);
-    }
-
-    .topbar-left .date {
-      font-size: 12px;
-      color: var(--text3);
-      margin-top: 1px;
-      font-family: 'DM Mono', monospace;
-      font-weight: 400;
-    }
+    .topbar-left h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; }
+    .topbar-left .date { font-size: 12px; color: var(--text3); margin-top: 1px; font-family: 'DM Mono', monospace; }
 
     .progress-pill {
-      background: var(--surface2);
-      border: 1px solid var(--border2);
-      border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 12px;
-      font-family: 'DM Mono', monospace;
-      color: var(--text2);
-      white-space: nowrap;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 20px; padding: 5px 12px;
+      font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text2); white-space: nowrap;
     }
-
     .progress-pill span { color: var(--green); font-weight: 500; }
 
-    /* ---- SCROLL AREA ---- */
-    .scroll-area {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px 16px 100px;
-    }
+    .scroll-area { flex: 1; overflow-y: auto; padding: 16px 16px 110px; }
 
-    /* ---- ALL DONE BANNER ---- */
     .all-done {
-      background: var(--green-dim);
-      border: 1px solid rgba(62,207,142,0.25);
-      border-radius: 14px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-      font-size: 14px;
-      color: var(--green);
-      font-weight: 500;
+      background: var(--green-dim); border: 1px solid rgba(62,207,142,0.25);
+      border-radius: 14px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; font-size: 14px; color: var(--green); font-weight: 500;
       animation: fadeIn 0.3s ease;
     }
 
-    .all-done .icon { font-size: 20px; }
-
-    /* ---- MED CARD ---- */
     .med-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 16px; margin-bottom: 12px;
       animation: slideUp 0.25s ease;
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slideUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .med-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 14px;
-    }
-
-    .med-name {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.2px;
-    }
-
-    .med-meta {
-      font-size: 12px;
-      color: var(--text3);
-      margin-top: 2px;
-      font-family: 'DM Mono', monospace;
-    }
+    .med-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .med-name { font-size: 16px; font-weight: 600; letter-spacing: -0.2px; }
+    .med-meta { font-size: 12px; color: var(--text3); margin-top: 2px; font-family: 'DM Mono', monospace; }
 
     .del-btn {
-      width: 30px;
-      height: 30px;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text3);
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.15s, color 0.15s;
+      width: 30px; height: 30px; background: none; border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text3); font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-
     .del-btn:active { background: var(--red-dim); color: var(--red); border-color: rgba(244,100,95,0.3); }
 
-    /* ---- DOSE CIRCLES ---- */
-    .doses-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+    .doses-grid { display: flex; flex-wrap: wrap; gap: 12px; }
 
     .dose-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 0;
     }
 
     .dose-circle {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s;
-      position: relative;
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.12s cubic-bezier(0.34,1.56,0.64,1);
     }
-
     .dose-btn:active .dose-circle { transform: scale(0.88); }
 
-    .dose-circle.pending {
-      background: var(--red-dim);
-      border: 2px solid var(--red);
-    }
-
-    .dose-circle.taken {
-      background: var(--green);
-      border: 2px solid var(--green);
-    }
+    .dose-circle.pending { background: var(--red-dim); border: 2px solid var(--red); }
+    .dose-circle.taken  { background: var(--green);   border: 2px solid var(--green); }
 
     .dose-circle.pending::after {
-      content: '';
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--red);
+      content: ''; width: 13px; height: 13px;
+      border-radius: 50%; background: var(--red);
     }
-
     .dose-circle.taken::after {
-      content: '';
-      width: 20px;
-      height: 14px;
-      border: 2.5px solid #0f1117;
-      border-top: none;
-      border-right: none;
+      content: ''; width: 20px; height: 13px;
+      border: 2.5px solid #0f1117; border-top: none; border-right: none;
       transform: rotate(-45deg) translateY(-2px);
     }
 
-    .dose-time {
-      font-size: 11px;
-      font-family: 'DM Mono', monospace;
-      font-weight: 500;
-      color: var(--text3);
+    .dose-ts {
+      font-size: 10px; font-family: 'DM Mono', monospace;
+      color: var(--text3); min-height: 14px; text-align: center;
     }
+    .dose-btn.taken-state .dose-ts { color: var(--green); }
 
-    .dose-btn.taken-state .dose-time { color: var(--green); }
+    .prog-wrap { margin-top: 14px; height: 3px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .prog-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
-    /* ---- PROGRESS BAR ---- */
-    .prog-wrap {
-      margin-top: 14px;
-      height: 3px;
-      background: var(--surface2);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .prog-fill {
-      height: 100%;
-      background: var(--green);
-      border-radius: 3px;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* ---- EMPTY STATE ---- */
-    .empty {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .empty-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--surface2);
-      border-radius: 20px;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-    }
-
+    .empty { text-align: center; padding: 60px 20px; }
+    .empty-icon { width: 64px; height: 64px; background: var(--surface2); border-radius: 20px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
     .empty h2 { font-size: 17px; font-weight: 500; color: var(--text2); }
     .empty p { font-size: 13px; color: var(--text3); margin-top: 5px; }
 
-    /* ---- FAB ---- */
     .fab {
-      position: fixed;
-      bottom: calc(24px + var(--safe-bottom));
-      right: 50%;
-      transform: translateX(calc(50% + 0px));
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      border-radius: 28px;
-      padding: 16px 28px;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 8px 32px rgba(79,156,249,0.35);
-      transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s;
-      z-index: 20;
+      position: fixed; bottom: calc(24px + var(--safe-bottom));
+      left: 50%; transform: translateX(-50%);
+      background: var(--blue); color: #fff; border: none; border-radius: 28px;
+      padding: 16px 28px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 8px 32px rgba(79,156,249,0.35); z-index: 20;
+      width: calc(100% - 48px); max-width: 382px; justify-content: center;
       letter-spacing: -0.2px;
-      max-width: calc(430px - 48px);
-      width: calc(100% - 48px);
-      justify-content: center;
+      transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s;
     }
+    .fab:active { transform: translateX(-50%) scale(0.96); box-shadow: 0 4px 16px rgba(79,156,249,0.2); }
 
-    .fab:active {
-      transform: translateX(calc(50% + 0px)) scale(0.96);
-      box-shadow: 0 4px 16px rgba(79,156,249,0.25);
-    }
-
-    .fab-plus { font-size: 20px; font-weight: 300; line-height: 1; }
-
-    /* ---- BOTTOM SHEET ---- */
     .sheet-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 30;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      z-index: 30; opacity: 0; pointer-events: none; transition: opacity 0.25s;
     }
-
     .sheet-backdrop.open { opacity: 1; pointer-events: all; }
 
     .sheet {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
+      position: fixed; bottom: 0; left: 50%;
       transform: translateX(-50%) translateY(100%);
-      width: 100%;
-      max-width: 430px;
-      background: var(--surface);
-      border-radius: 24px 24px 0 0;
+      width: 100%; max-width: 430px;
+      background: var(--surface); border-radius: 24px 24px 0 0;
       padding: 0 20px calc(24px + var(--safe-bottom));
-      z-index: 40;
-      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-      max-height: 90dvh;
-      overflow-y: auto;
+      z-index: 40; transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
+      max-height: 85dvh; overflow-y: auto;
     }
-
     .sheet.open { transform: translateX(-50%) translateY(0); }
 
-    .sheet-handle {
-      width: 36px;
-      height: 4px;
-      background: var(--border2);
-      border-radius: 4px;
-      margin: 12px auto 20px;
-    }
-
-    .sheet h2 {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 20px;
-      letter-spacing: -0.3px;
-    }
+    .sheet-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 4px; margin: 12px auto 20px; }
+    .sheet h2 { font-size: 18px; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.3px; }
 
     .field { margin-bottom: 18px; }
+    .field label { display: block; font-size: 12px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 7px; }
 
-    .field label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text3);
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 7px;
+    .field input[type="text"] {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 13px 14px; font-size: 15px;
+      font-family: 'DM Sans', sans-serif; color: var(--text); outline: none;
     }
+    .field input[type="text"]:focus { border-color: var(--blue); }
+    .field input[type="text"]::placeholder { color: var(--text3); }
 
-    .field input {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border2);
-      border-radius: 12px;
-      padding: 13px 14px;
-      font-size: 15px;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.15s;
+    .stepper {
+      display: flex; align-items: center;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 12px; overflow: hidden; width: fit-content;
     }
-
-    .field input:focus { border-color: var(--blue); }
-    .field input::placeholder { color: var(--text3); }
-
-    .field input[type="time"] {
-      font-family: 'DM Mono', monospace;
-      color-scheme: dark;
+    .stepper-btn {
+      width: 56px; height: 56px; background: none; border: none;
+      font-size: 24px; font-weight: 300; color: var(--text2); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .time-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 10px;
+    .stepper-btn:active { background: var(--blue-dim); color: var(--blue); }
+    .stepper-val {
+      min-width: 56px; text-align: center;
+      font-size: 22px; font-weight: 600; font-family: 'DM Mono', monospace;
+      color: var(--text); line-height: 56px;
+      border-left: 1px solid var(--border2); border-right: 1px solid var(--border2);
     }
-
-    .time-tag {
-      background: var(--blue-dim);
-      border: 1px solid rgba(79,156,249,0.25);
-      border-radius: 20px;
-      padding: 5px 12px 5px 14px;
-      font-size: 13px;
-      font-family: 'DM Mono', monospace;
-      color: var(--blue);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .time-tag button {
-      background: none;
-      border: none;
-      color: var(--blue);
-      opacity: 0.6;
-      font-size: 15px;
-      cursor: pointer;
-      padding: 0;
-      line-height: 1;
-    }
-
-    .time-tag button:active { opacity: 1; }
-
-    .add-time-row {
-      display: flex;
-      gap: 8px;
-    }
-
-    .add-time-row input { flex: 1; }
-
-    .add-time-btn {
-      background: var(--surface2);
-      border: 1px solid var(--border2);
-      border-radius: 12px;
-      padding: 13px 18px;
-      font-size: 14px;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text2);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .add-time-btn:active { background: var(--blue-dim); color: var(--blue); }
+    .freq-hint { font-size: 12px; color: var(--text3); margin-top: 8px; }
 
     .save-btn {
-      width: 100%;
-      background: var(--blue);
-      border: none;
-      border-radius: 14px;
-      padding: 16px;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      color: #fff;
-      cursor: pointer;
-      margin-top: 6px;
+      width: 100%; background: var(--blue); border: none; border-radius: 14px;
+      padding: 16px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      color: #fff; cursor: pointer; margin-top: 6px; letter-spacing: -0.2px;
       transition: opacity 0.15s, transform 0.12s;
-      letter-spacing: -0.2px;
     }
-
     .save-btn:disabled { opacity: 0.35; }
-    .save-btn:not(:disabled):active { transform: scale(0.98); opacity: 0.9; }
+    .save-btn:not(:disabled):active { transform: scale(0.98); }
 
     .reset-link {
-      display: block;
-      text-align: center;
-      font-size: 12px;
-      color: var(--text3);
-      background: none;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      padding: 8px;
-      margin-top: 4px;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      display: block; text-align: center; font-size: 12px; color: var(--text3);
+      background: none; border: none; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; padding: 8px; margin-top: 4px;
+      text-decoration: underline; text-underline-offset: 3px;
     }
-
-    .reset-link:active { color: var(--text2); }
   </style>
 </head>
 <body>
@@ -504,11 +224,9 @@
     </div>
     <div class="progress-pill" id="progress-pill"></div>
   </div>
-
   <div class="scroll-area">
     <div id="all-done-banner" style="display:none" class="all-done">
-      <span class="icon">✓</span>
-      All doses taken today — great job!
+      <span>✓</span> All doses taken today — great job!
     </div>
     <div id="med-list"></div>
     <button class="reset-link" onclick="resetDay()">Reset today's doses</button>
@@ -516,7 +234,7 @@
 </div>
 
 <button class="fab" onclick="openSheet()">
-  <span class="fab-plus">+</span> Add medication
+  <span style="font-size:20px;font-weight:300;line-height:1">+</span> Add medication
 </button>
 
 <div class="sheet-backdrop" id="backdrop" onclick="closeSheet()"></div>
@@ -528,47 +246,64 @@
     <input type="text" id="med-name-input" placeholder="e.g. Metformin 500mg" />
   </div>
   <div class="field">
-    <label>Dose times</label>
-    <div class="time-tags" id="time-tags-el"></div>
-    <div class="add-time-row">
-      <input type="time" id="time-input" />
-      <button class="add-time-btn" onclick="addTime()">Add time</button>
+    <label>Doses per day</label>
+    <div class="stepper">
+      <button class="stepper-btn" onclick="stepDoses(-1)">−</button>
+      <div class="stepper-val" id="dose-count-el">1</div>
+      <button class="stepper-btn" onclick="stepDoses(1)">+</button>
     </div>
+    <div class="freq-hint" id="freq-hint">Once daily</div>
   </div>
-  <button class="save-btn" id="save-btn" onclick="saveMed()">Save medication</button>
+  <button class="save-btn" id="save-btn" onclick="saveMed()" disabled>Save medication</button>
 </div>
 
 <script>
-  const STORAGE_KEY = 'medtrack_meds_v1';
-  const LOG_KEY = 'medtrack_log_v1';
-  let meds = [], todayLog = {}, pendingTimes = [];
+  const MEDS_KEY = 'medtrack_meds_v2';
+  const LOG_KEY  = 'medtrack_log_v2';
+  let meds = [], todayLog = {}, doseCount = 1;
 
-  function todayStr() {
-    return new Date().toLocaleDateString('en-CA');
-  }
+  function todayStr() { return new Date().toLocaleDateString('en-CA'); }
 
   function load() {
-    try { meds = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { meds = []; }
+    try { meds = JSON.parse(localStorage.getItem(MEDS_KEY) || '[]'); } catch { meds = []; }
     try {
-      const saved = JSON.parse(localStorage.getItem(LOG_KEY) || '{}');
-      todayLog = saved.date === todayStr() ? (saved.log || {}) : {};
+      const s = JSON.parse(localStorage.getItem(LOG_KEY) || '{}');
+      todayLog = s.date === todayStr() ? (s.log || {}) : {};
     } catch { todayLog = {}; }
   }
 
   function save() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(meds));
+    localStorage.setItem(MEDS_KEY, JSON.stringify(meds));
     localStorage.setItem(LOG_KEY, JSON.stringify({ date: todayStr(), log: todayLog }));
   }
 
-  function fmt(t) {
-    if (!t) return '';
-    const [h, m] = t.split(':').map(Number);
+  function fmtTime(iso) {
+    const d = new Date(iso);
+    const h = d.getHours(), m = d.getMinutes();
     return `${h % 12 || 12}:${String(m).padStart(2,'0')}${h < 12 ? 'am' : 'pm'}`;
   }
 
+  function freqLabel(n) {
+    if (n === 1) return 'Once daily';
+    if (n === 2) return 'Twice daily';
+    if (n === 3) return 'Three times daily';
+    return `${n}× daily`;
+  }
+
+  function stepDoses(d) {
+    doseCount = Math.max(1, Math.min(10, doseCount + d));
+    document.getElementById('dose-count-el').textContent = doseCount;
+    document.getElementById('freq-hint').textContent = freqLabel(doseCount);
+  }
+
+  document.getElementById('med-name-input').addEventListener('input', function() {
+    document.getElementById('save-btn').disabled = !this.value.trim();
+  });
+
   function toggleDose(medId, idx) {
-    const k = medId + '_' + idx;
-    todayLog[k] = !todayLog[k];
+    const k = `${medId}_${idx}`;
+    if (todayLog[k]) { delete todayLog[k]; }
+    else { todayLog[k] = new Date().toISOString(); }
     save(); render();
   }
 
@@ -579,92 +314,64 @@
     save(); render();
   }
 
-  function resetDay() {
-    todayLog = {}; save(); render();
-  }
+  function resetDay() { todayLog = {}; save(); render(); }
 
   function openSheet() {
+    doseCount = 1;
+    document.getElementById('dose-count-el').textContent = '1';
+    document.getElementById('freq-hint').textContent = 'Once daily';
+    document.getElementById('med-name-input').value = '';
+    document.getElementById('save-btn').disabled = true;
     document.getElementById('sheet').classList.add('open');
     document.getElementById('backdrop').classList.add('open');
-    document.getElementById('med-name-input').focus();
+    setTimeout(() => document.getElementById('med-name-input').focus(), 350);
   }
 
   function closeSheet() {
     document.getElementById('sheet').classList.remove('open');
     document.getElementById('backdrop').classList.remove('open');
-    pendingTimes = [];
-    document.getElementById('med-name-input').value = '';
-    document.getElementById('time-input').value = '';
-    renderPendingTimes();
   }
-
-  function addTime() {
-    const t = document.getElementById('time-input').value;
-    if (!t || pendingTimes.includes(t)) return;
-    pendingTimes.push(t);
-    pendingTimes.sort();
-    document.getElementById('time-input').value = '';
-    renderPendingTimes();
-  }
-
-  function removeTime(t) {
-    pendingTimes = pendingTimes.filter(x => x !== t);
-    renderPendingTimes();
-  }
-
-  function renderPendingTimes() {
-    document.getElementById('time-tags-el').innerHTML = pendingTimes.map(t =>
-      `<span class="time-tag">${fmt(t)}<button onclick="removeTime('${t}')">×</button></span>`
-    ).join('');
-    document.getElementById('save-btn').disabled = pendingTimes.length === 0 || !document.getElementById('med-name-input').value.trim();
-  }
-
-  document.getElementById('med-name-input').addEventListener('input', renderPendingTimes);
 
   function saveMed() {
     const name = document.getElementById('med-name-input').value.trim();
-    if (!name || pendingTimes.length === 0) return;
-    meds.push({ id: 'med_' + Date.now(), name, times: [...pendingTimes] });
+    if (!name) return;
+    meds.push({ id: 'med_' + Date.now(), name, doses: doseCount });
     save(); render(); closeSheet();
   }
 
   function render() {
-    const now = new Date();
-    document.getElementById('date-el').textContent = now.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+    document.getElementById('date-el').textContent = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
 
     let total = 0, taken = 0;
-    meds.forEach(m => { total += m.times.length; m.times.forEach((_,i) => { if (todayLog[m.id+'_'+i]) taken++; }); });
-    document.getElementById('progress-pill').innerHTML = `<span>${taken}</span> / ${total} doses`;
-
-    const banner = document.getElementById('all-done-banner');
-    banner.style.display = total > 0 && taken === total ? 'flex' : 'none';
+    meds.forEach(m => {
+      total += m.doses;
+      for (let i = 0; i < m.doses; i++) { if (todayLog[`${m.id}_${i}`]) taken++; }
+    });
+    document.getElementById('progress-pill').innerHTML = `<span>${taken}</span> / ${total}`;
+    document.getElementById('all-done-banner').style.display = total > 0 && taken === total ? 'flex' : 'none';
 
     const list = document.getElementById('med-list');
     if (meds.length === 0) {
-      list.innerHTML = `<div class="empty">
-        <div class="empty-icon">💊</div>
-        <h2>No medications yet</h2>
-        <p>Tap the button below to add your first one</p>
-      </div>`;
+      list.innerHTML = `<div class="empty"><div class="empty-icon">💊</div><h2>No medications yet</h2><p>Tap the button below to add your first one</p></div>`;
       return;
     }
 
     list.innerHTML = meds.map(m => {
-      const takenCount = m.times.filter((_,i) => todayLog[m.id+'_'+i]).length;
-      const pct = Math.round(takenCount / m.times.length * 100);
-      const doseLabel = m.times.length === 1 ? 'Once daily' : `${m.times.length}× daily`;
-      const circles = m.times.map((t, i) => {
-        const done = !!todayLog[m.id+'_'+i];
+      const takenCount = Array.from({length: m.doses}, (_,i) => todayLog[`${m.id}_${i}`]).filter(Boolean).length;
+      const pct = Math.round(takenCount / m.doses * 100);
+      const circles = Array.from({length: m.doses}, (_, i) => {
+        const ts = todayLog[`${m.id}_${i}`];
+        const done = !!ts;
         return `<button class="dose-btn ${done ? 'taken-state' : ''}" onclick="toggleDose('${m.id}', ${i})">
           <div class="dose-circle ${done ? 'taken' : 'pending'}"></div>
-          <span class="dose-time">${fmt(t)}</span>
+          <span class="dose-ts">${done ? fmtTime(ts) : ''}</span>
         </button>`;
       }).join('');
       return `<div class="med-card">
         <div class="med-top">
           <div>
             <div class="med-name">${m.name}</div>
-            <div class="med-meta">${doseLabel} · ${takenCount}/${m.times.length} taken</div>
+            <div class="med-meta">${freqLabel(m.doses)} · ${takenCount}/${m.doses} taken</div>
           </div>
           <button class="del-btn" onclick="deleteMed('${m.id}')">✕</button>
         </div>
