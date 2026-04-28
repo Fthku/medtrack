@@ -14,226 +14,137 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #181c27;
-      --surface2: #1e2333;
-      --border: rgba(255,255,255,0.07);
-      --border2: rgba(255,255,255,0.13);
-      --text: #eef0f6;
-      --text2: #8b91a8;
-      --text3: #555c73;
-      --green: #3ecf8e;
-      --green-dim: rgba(62,207,142,0.12);
-      --red: #f4645f;
-      --red-dim: rgba(244,100,95,0.12);
-      --blue: #4f9cf9;
-      --blue-dim: rgba(79,156,249,0.12);
-      --safe-top: env(safe-area-inset-top, 0px);
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --bg:#0f1117;--surface:#181c27;--surface2:#1e2333;
+      --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+      --text:#eef0f6;--text2:#8b91a8;--text3:#555c73;
+      --green:#3ecf8e;--green-dim:rgba(62,207,142,0.12);
+      --red:#f4645f;--red-dim:rgba(244,100,95,0.12);
+      --blue:#4f9cf9;--blue-dim:rgba(79,156,249,0.12);
+      --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
     }
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+    html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overscroll-behavior:none;}
+    body{padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}
+    .app{max-width:430px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    /* TOPBAR */
+    .topbar{padding:18px 20px 0;position:sticky;top:var(--safe-top);background:var(--bg);z-index:10;}
+    .topbar-row1{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px;}
+    .topbar-left h1{font-size:22px;font-weight:600;letter-spacing:-0.4px;}
+    .topbar-left .date{font-size:12px;color:var(--text3);margin-top:1px;font-family:'DM Mono',monospace;}
+    .progress-pill{background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:5px 12px;font-size:12px;font-family:'DM Mono',monospace;color:var(--text2);white-space:nowrap;}
+    .progress-pill span{color:var(--green);font-weight:500;}
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      overscroll-behavior: none;
-    }
+    /* TABS */
+    .tabs{display:flex;border-bottom:1px solid var(--border);}
+    .tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:500;color:var(--text3);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;transition:color 0.15s,border-color 0.15s;}
+    .tab.active{color:var(--blue);border-bottom-color:var(--blue);}
 
-    body { padding-top: var(--safe-top); padding-bottom: var(--safe-bottom); }
+    .scroll-area{flex:1;overflow-y:auto;padding:16px 16px 110px;}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
 
-    .app { max-width: 430px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; }
+    /* BANNERS */
+    .all-done{background:var(--green-dim);border:1px solid rgba(62,207,142,0.25);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:14px;color:var(--green);font-weight:500;animation:fadeIn 0.3s ease;}
 
-    .topbar {
-      padding: 18px 20px 12px;
-      display: flex; justify-content: space-between; align-items: flex-end;
-      position: sticky; top: var(--safe-top);
-      background: var(--bg); z-index: 10;
-      border-bottom: 1px solid var(--border);
-    }
+    /* MED CARD */
+    .med-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:12px;animation:slideUp 0.25s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .med-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+    .med-name{font-size:16px;font-weight:600;letter-spacing:-0.2px;}
+    .med-meta{font-size:12px;color:var(--text3);margin-top:2px;font-family:'DM Mono',monospace;}
+    .del-btn{width:30px;height:30px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .del-btn:active{background:var(--red-dim);color:var(--red);border-color:rgba(244,100,95,0.3);}
+    .doses-grid{display:flex;flex-wrap:wrap;gap:12px;}
+    .dose-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;}
+    .dose-circle{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.12s cubic-bezier(0.34,1.56,0.64,1);}
+    .dose-btn:active .dose-circle{transform:scale(0.88);}
+    .dose-circle.pending{background:var(--red-dim);border:2px solid var(--red);}
+    .dose-circle.taken{background:var(--green);border:2px solid var(--green);}
+    .dose-circle.pending::after{content:'';width:13px;height:13px;border-radius:50%;background:var(--red);}
+    .dose-circle.taken::after{content:'';width:20px;height:13px;border:2.5px solid #0f1117;border-top:none;border-right:none;transform:rotate(-45deg) translateY(-2px);}
+    .dose-ts{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);min-height:14px;text-align:center;}
+    .dose-btn.taken-state .dose-ts{color:var(--green);}
+    .prog-wrap{margin-top:14px;height:3px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+    .prog-fill{height:100%;background:var(--green);border-radius:3px;transition:width 0.4s cubic-bezier(0.4,0,0.2,1);}
 
-    .topbar-left h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; }
-    .topbar-left .date { font-size: 12px; color: var(--text3); margin-top: 1px; font-family: 'DM Mono', monospace; }
+    /* EMPTY */
+    .empty{text-align:center;padding:60px 20px;}
+    .empty-icon{width:64px;height:64px;background:var(--surface2);border-radius:20px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;}
+    .empty h2{font-size:17px;font-weight:500;color:var(--text2);}
+    .empty p{font-size:13px;color:var(--text3);margin-top:5px;}
 
-    .progress-pill {
-      background: var(--surface2); border: 1px solid var(--border2);
-      border-radius: 20px; padding: 5px 12px;
-      font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text2); white-space: nowrap;
-    }
-    .progress-pill span { color: var(--green); font-weight: 500; }
+    /* HISTORY */
+    .hist-day{margin-bottom:20px;}
+    .hist-day-label{font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:8px;font-family:'DM Mono',monospace;}
+    .hist-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:8px;}
+    .hist-med-name{font-size:14px;font-weight:600;margin-bottom:6px;}
+    .hist-doses{display:flex;flex-wrap:wrap;gap:6px;}
+    .hist-dose{font-size:11px;font-family:'DM Mono',monospace;padding:3px 9px;border-radius:20px;}
+    .hist-dose.taken{background:var(--green-dim);color:var(--green);border:1px solid rgba(62,207,142,0.2);}
+    .hist-dose.missed{background:var(--red-dim);color:var(--red);border:1px solid rgba(244,100,95,0.2);}
+    .hist-empty{text-align:center;padding:40px 20px;font-size:13px;color:var(--text3);}
 
-    .scroll-area { flex: 1; overflow-y: auto; padding: 16px 16px 110px; }
+    /* FAB */
+    .fab{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;border:none;border-radius:28px;padding:16px 28px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(79,156,249,0.35);z-index:20;width:calc(100% - 48px);max-width:382px;justify-content:center;letter-spacing:-0.2px;transition:transform 0.15s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.15s;}
+    .fab:active{transform:translateX(-50%) scale(0.96);box-shadow:0 4px 16px rgba(79,156,249,0.2);}
 
-    .all-done {
-      background: var(--green-dim); border: 1px solid rgba(62,207,142,0.25);
-      border-radius: 14px; padding: 14px 16px;
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 14px; font-size: 14px; color: var(--green); font-weight: 500;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .med-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 18px; padding: 16px; margin-bottom: 12px;
-      animation: slideUp 0.25s ease;
-    }
-
-    @keyframes slideUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-    .med-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-    .med-name { font-size: 16px; font-weight: 600; letter-spacing: -0.2px; }
-    .med-meta { font-size: 12px; color: var(--text3); margin-top: 2px; font-family: 'DM Mono', monospace; }
-
-    .del-btn {
-      width: 30px; height: 30px; background: none; border: 1px solid var(--border);
-      border-radius: 8px; color: var(--text3); font-size: 14px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .del-btn:active { background: var(--red-dim); color: var(--red); border-color: rgba(244,100,95,0.3); }
-
-    .doses-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    .dose-btn {
-      display: flex; flex-direction: column; align-items: center; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 0;
-    }
-
-    .dose-circle {
-      width: 58px; height: 58px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.12s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .dose-btn:active .dose-circle { transform: scale(0.88); }
-
-    .dose-circle.pending { background: var(--red-dim); border: 2px solid var(--red); }
-    .dose-circle.taken  { background: var(--green);   border: 2px solid var(--green); }
-
-    .dose-circle.pending::after {
-      content: ''; width: 13px; height: 13px;
-      border-radius: 50%; background: var(--red);
-    }
-    .dose-circle.taken::after {
-      content: ''; width: 20px; height: 13px;
-      border: 2.5px solid #0f1117; border-top: none; border-right: none;
-      transform: rotate(-45deg) translateY(-2px);
-    }
-
-    .dose-ts {
-      font-size: 10px; font-family: 'DM Mono', monospace;
-      color: var(--text3); min-height: 14px; text-align: center;
-    }
-    .dose-btn.taken-state .dose-ts { color: var(--green); }
-
-    .prog-wrap { margin-top: 14px; height: 3px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
-    .prog-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-
-    .empty { text-align: center; padding: 60px 20px; }
-    .empty-icon { width: 64px; height: 64px; background: var(--surface2); border-radius: 20px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
-    .empty h2 { font-size: 17px; font-weight: 500; color: var(--text2); }
-    .empty p { font-size: 13px; color: var(--text3); margin-top: 5px; }
-
-    .fab {
-      position: fixed; bottom: calc(24px + var(--safe-bottom));
-      left: 50%; transform: translateX(-50%);
-      background: var(--blue); color: #fff; border: none; border-radius: 28px;
-      padding: 16px 28px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
-      cursor: pointer; display: flex; align-items: center; gap: 8px;
-      box-shadow: 0 8px 32px rgba(79,156,249,0.35); z-index: 20;
-      width: calc(100% - 48px); max-width: 382px; justify-content: center;
-      letter-spacing: -0.2px;
-      transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s;
-    }
-    .fab:active { transform: translateX(-50%) scale(0.96); box-shadow: 0 4px 16px rgba(79,156,249,0.2); }
-
-    .sheet-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-      z-index: 30; opacity: 0; pointer-events: none; transition: opacity 0.25s;
-    }
-    .sheet-backdrop.open { opacity: 1; pointer-events: all; }
-
-    .sheet {
-      position: fixed; bottom: 0; left: 50%;
-      transform: translateX(-50%) translateY(100%);
-      width: 100%; max-width: 430px;
-      background: var(--surface); border-radius: 24px 24px 0 0;
-      padding: 0 20px calc(24px + var(--safe-bottom));
-      z-index: 40; transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
-      max-height: 85dvh; overflow-y: auto;
-    }
-    .sheet.open { transform: translateX(-50%) translateY(0); }
-
-    .sheet-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 4px; margin: 12px auto 20px; }
-    .sheet h2 { font-size: 18px; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.3px; }
-
-    .field { margin-bottom: 18px; }
-    .field label { display: block; font-size: 12px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 7px; }
-
-    .field input[type="text"] {
-      width: 100%; background: var(--surface2); border: 1px solid var(--border2);
-      border-radius: 12px; padding: 13px 14px; font-size: 15px;
-      font-family: 'DM Sans', sans-serif; color: var(--text); outline: none;
-    }
-    .field input[type="text"]:focus { border-color: var(--blue); }
-    .field input[type="text"]::placeholder { color: var(--text3); }
-
-    .stepper {
-      display: flex; align-items: center;
-      background: var(--surface2); border: 1px solid var(--border2);
-      border-radius: 12px; overflow: hidden; width: fit-content;
-    }
-    .stepper-btn {
-      width: 56px; height: 56px; background: none; border: none;
-      font-size: 24px; font-weight: 300; color: var(--text2); cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .stepper-btn:active { background: var(--blue-dim); color: var(--blue); }
-    .stepper-val {
-      min-width: 56px; text-align: center;
-      font-size: 22px; font-weight: 600; font-family: 'DM Mono', monospace;
-      color: var(--text); line-height: 56px;
-      border-left: 1px solid var(--border2); border-right: 1px solid var(--border2);
-    }
-    .freq-hint { font-size: 12px; color: var(--text3); margin-top: 8px; }
-
-    .save-btn {
-      width: 100%; background: var(--blue); border: none; border-radius: 14px;
-      padding: 16px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
-      color: #fff; cursor: pointer; margin-top: 6px; letter-spacing: -0.2px;
-      transition: opacity 0.15s, transform 0.12s;
-    }
-    .save-btn:disabled { opacity: 0.35; }
-    .save-btn:not(:disabled):active { transform: scale(0.98); }
-
-    .reset-link {
-      display: block; text-align: center; font-size: 12px; color: var(--text3);
-      background: none; border: none; font-family: 'DM Sans', sans-serif;
-      cursor: pointer; padding: 8px; margin-top: 4px;
-      text-decoration: underline; text-underline-offset: 3px;
-    }
+    /* SHEET */
+    .sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:30;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+    .sheet-backdrop.open{opacity:1;pointer-events:all;}
+    .sheet{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:430px;background:var(--surface);border-radius:24px 24px 0 0;padding:0 20px calc(24px + var(--safe-bottom));z-index:40;transition:transform 0.3s cubic-bezier(0.32,0.72,0,1);max-height:85dvh;overflow-y:auto;}
+    .sheet.open{transform:translateX(-50%) translateY(0);}
+    .sheet-handle{width:36px;height:4px;background:var(--border2);border-radius:4px;margin:12px auto 20px;}
+    .sheet h2{font-size:18px;font-weight:600;margin-bottom:20px;letter-spacing:-0.3px;}
+    .field{margin-bottom:18px;}
+    .field label{display:block;font-size:12px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:7px;}
+    .field input[type="text"]{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:13px 14px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;}
+    .field input[type="text"]:focus{border-color:var(--blue);}
+    .field input[type="text"]::placeholder{color:var(--text3);}
+    .stepper{display:flex;align-items:center;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;width:fit-content;}
+    .stepper-btn{width:56px;height:56px;background:none;border:none;font-size:24px;font-weight:300;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .stepper-btn:active{background:var(--blue-dim);color:var(--blue);}
+    .stepper-val{min-width:56px;text-align:center;font-size:22px;font-weight:600;font-family:'DM Mono',monospace;color:var(--text);line-height:56px;border-left:1px solid var(--border2);border-right:1px solid var(--border2);}
+    .freq-hint{font-size:12px;color:var(--text3);margin-top:8px;}
+    .save-btn{width:100%;background:var(--blue);border:none;border-radius:14px;padding:16px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;color:#fff;cursor:pointer;margin-top:6px;letter-spacing:-0.2px;transition:opacity 0.15s,transform 0.12s;}
+    .save-btn:disabled{opacity:0.35;}
+    .save-btn:not(:disabled):active{transform:scale(0.98);}
+    .reset-link{display:block;text-align:center;font-size:12px;color:var(--text3);background:none;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;padding:8px;margin-top:4px;text-decoration:underline;text-underline-offset:3px;}
   </style>
 </head>
 <body>
 <div class="app">
   <div class="topbar">
-    <div class="topbar-left">
-      <h1>MedTrack</h1>
-      <div class="date" id="date-el"></div>
+    <div class="topbar-row1">
+      <div class="topbar-left">
+        <h1>MedTrack</h1>
+        <div class="date" id="date-el"></div>
+      </div>
+      <div class="progress-pill" id="progress-pill"></div>
     </div>
-    <div class="progress-pill" id="progress-pill"></div>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('today')">Today</button>
+      <button class="tab" onclick="switchTab('history')">History</button>
+    </div>
   </div>
+
   <div class="scroll-area">
-    <div id="all-done-banner" style="display:none" class="all-done">
-      <span>✓</span> All doses taken today — great job!
+    <!-- TODAY -->
+    <div class="tab-panel active" id="panel-today">
+      <div id="all-done-banner" style="display:none" class="all-done">
+        <span>✓</span> All doses taken today — great job!
+      </div>
+      <div id="med-list"></div>
+      <button class="reset-link" onclick="resetDay()">Reset today's doses</button>
     </div>
-    <div id="med-list"></div>
-    <button class="reset-link" onclick="resetDay()">Reset today's doses</button>
+    <!-- HISTORY -->
+    <div class="tab-panel" id="panel-history">
+      <div id="hist-list"></div>
+    </div>
   </div>
 </div>
 
-<button class="fab" onclick="openSheet()">
+<button class="fab" id="fab" onclick="openSheet()">
   <span style="font-size:20px;font-weight:300;line-height:1">+</span> Add medication
 </button>
 
@@ -260,7 +171,9 @@
 <script>
   const MEDS_KEY = 'medtrack_meds_v2';
   const LOG_KEY  = 'medtrack_log_v2';
-  let meds = [], todayLog = {}, doseCount = 1;
+  const HIST_KEY = 'medtrack_hist_v1';
+  const HIST_DAYS = 7;
+  let meds = [], todayLog = {}, history = {}, doseCount = 1, currentTab = 'today';
 
   function todayStr() { return new Date().toLocaleDateString('en-CA'); }
 
@@ -268,8 +181,25 @@
     try { meds = JSON.parse(localStorage.getItem(MEDS_KEY) || '[]'); } catch { meds = []; }
     try {
       const s = JSON.parse(localStorage.getItem(LOG_KEY) || '{}');
-      todayLog = s.date === todayStr() ? (s.log || {}) : {};
+      if (s.date === todayStr()) {
+        todayLog = s.log || {};
+      } else {
+        // Archive yesterday before resetting
+        if (s.date && s.log) archiveDay(s.date, s.log);
+        todayLog = {};
+      }
     } catch { todayLog = {}; }
+    try { history = JSON.parse(localStorage.getItem(HIST_KEY) || '{}'); } catch { history = {}; }
+  }
+
+  function archiveDay(dateStr, log) {
+    history[dateStr] = log;
+    // Keep only last HIST_DAYS days
+    const keys = Object.keys(history).sort().reverse().slice(0, HIST_DAYS);
+    const pruned = {};
+    keys.forEach(k => pruned[k] = history[k]);
+    history = pruned;
+    localStorage.setItem(HIST_KEY, JSON.stringify(history));
   }
 
   function save() {
@@ -290,6 +220,16 @@
     return `${n}× daily`;
   }
 
+  function switchTab(tab) {
+    currentTab = tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+    document.getElementById('fab').style.display = tab === 'today' ? 'flex' : 'none';
+    if (tab === 'history') renderHistory();
+  }
+
   function stepDoses(d) {
     doseCount = Math.max(1, Math.min(10, doseCount + d));
     document.getElementById('dose-count-el').textContent = doseCount;
@@ -304,17 +244,17 @@
     const k = `${medId}_${idx}`;
     if (todayLog[k]) { delete todayLog[k]; }
     else { todayLog[k] = new Date().toISOString(); }
-    save(); render();
+    save(); renderToday();
   }
 
   function deleteMed(id) {
     if (!confirm('Remove this medication?')) return;
     meds = meds.filter(m => m.id !== id);
     Object.keys(todayLog).forEach(k => { if (k.startsWith(id + '_')) delete todayLog[k]; });
-    save(); render();
+    save(); renderToday();
   }
 
-  function resetDay() { todayLog = {}; save(); render(); }
+  function resetDay() { todayLog = {}; save(); renderToday(); }
 
   function openSheet() {
     doseCount = 1;
@@ -336,12 +276,11 @@
     const name = document.getElementById('med-name-input').value.trim();
     if (!name) return;
     meds.push({ id: 'med_' + Date.now(), name, doses: doseCount });
-    save(); render(); closeSheet();
+    save(); renderToday(); closeSheet();
   }
 
-  function render() {
+  function renderToday() {
     document.getElementById('date-el').textContent = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
-
     let total = 0, taken = 0;
     meds.forEach(m => {
       total += m.doses;
@@ -355,7 +294,6 @@
       list.innerHTML = `<div class="empty"><div class="empty-icon">💊</div><h2>No medications yet</h2><p>Tap the button below to add your first one</p></div>`;
       return;
     }
-
     list.innerHTML = meds.map(m => {
       const takenCount = Array.from({length: m.doses}, (_,i) => todayLog[`${m.id}_${i}`]).filter(Boolean).length;
       const pct = Math.round(takenCount / m.doses * 100);
@@ -369,10 +307,7 @@
       }).join('');
       return `<div class="med-card">
         <div class="med-top">
-          <div>
-            <div class="med-name">${m.name}</div>
-            <div class="med-meta">${freqLabel(m.doses)} · ${takenCount}/${m.doses} taken</div>
-          </div>
+          <div><div class="med-name">${m.name}</div><div class="med-meta">${freqLabel(m.doses)} · ${takenCount}/${m.doses} taken</div></div>
           <button class="del-btn" onclick="deleteMed('${m.id}')">✕</button>
         </div>
         <div class="doses-grid">${circles}</div>
@@ -381,7 +316,41 @@
     }).join('');
   }
 
-  load(); render();
+  function renderHistory() {
+    const list = document.getElementById('hist-list');
+    const days = Object.keys(history).sort().reverse();
+
+    if (days.length === 0) {
+      list.innerHTML = `<div class="hist-empty">No history yet.<br>It builds up day by day.</div>`;
+      return;
+    }
+
+    list.innerHTML = days.map(dateStr => {
+      const log = history[dateStr];
+      const d = new Date(dateStr + 'T12:00:00');
+      const label = d.toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
+
+      const cards = meds.map(m => {
+        const doses = Array.from({length: m.doses}, (_, i) => {
+          const ts = log[`${m.id}_${i}`];
+          return ts
+            ? `<span class="hist-dose taken">${fmtTime(ts)}</span>`
+            : `<span class="hist-dose missed">missed</span>`;
+        }).join('');
+        return `<div class="hist-card">
+          <div class="hist-med-name">${m.name}</div>
+          <div class="hist-doses">${doses}</div>
+        </div>`;
+      }).join('');
+
+      return `<div class="hist-day">
+        <div class="hist-day-label">${label}</div>
+        ${cards || '<div class="hist-empty" style="padding:10px 0;font-size:12px">No medications configured for this day</div>'}
+      </div>`;
+    }).join('');
+  }
+
+  load(); renderToday();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/medtrack/sw.js').catch(() => {});
