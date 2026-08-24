@@ -110,6 +110,57 @@
     .save-btn:disabled{opacity:0.35;}
     .save-btn:not(:disabled):active{transform:scale(0.98);}
     .reset-link{display:block;text-align:center;font-size:12px;color:var(--text3);background:none;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;padding:8px;margin-top:4px;text-decoration:underline;text-underline-offset:3px;}
+
+    /* STRIP PACKS */
+    .strips-section{margin-top:14px;border-top:1px solid var(--border);padding-top:12px;}
+    .strips-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+    .strips-title{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;}
+    .strip-add-btn{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:4px 10px;font-size:11px;font-weight:500;color:var(--text2);cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:4px;}
+    .strip-add-btn:active{background:var(--blue-dim);color:var(--blue);}
+    .strip-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px;}
+    .strip-box-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+    .strip-label{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:5px;}
+    .strip-remaining{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;}
+    .strip-actions{display:flex;gap:4px;}
+    .strip-mini-btn{width:24px;height:24px;background:none;border:1px solid var(--border2);border-radius:6px;color:var(--text3);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;}
+    .strip-mini-btn:active{background:var(--blue-dim);color:var(--blue);}
+    .pills-grid{display:flex;flex-wrap:wrap;gap:7px;}
+    .pill{width:30px;height:30px;border-radius:50%;border:2px solid;padding:0;cursor:default;transition:transform 0.12s cubic-bezier(0.34,1.56,0.64,1);}
+    .pill.tappable{cursor:pointer;}
+    .pill.tappable:active{transform:scale(0.85);}
+    .pill.taken{background:var(--red);border-color:rgba(244,100,95,0.5);}
+    .pill.today{background:var(--amber);border-color:rgba(245,166,35,0.6);box-shadow:0 0 0 3px rgba(245,166,35,0.2);}
+    .pill.remaining{background:var(--green);border-color:rgba(62,207,142,0.5);}
+    .strip-inventory{margin-top:12px;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;display:flex;justify-content:space-between;align-items:center;}
+    .strip-inventory.low{background:rgba(245,166,35,0.1);border-color:rgba(245,166,35,0.3);}
+    .inv-label{font-size:12px;color:var(--text2);}
+    .strip-inventory.low .inv-label{color:var(--amber);}
+    .inv-controls{display:flex;align-items:center;gap:8px;}
+    .inv-count{font-size:16px;font-weight:600;font-family:'DM Mono',monospace;color:var(--text);min-width:24px;text-align:center;}
+    .inv-btn{width:28px;height:28px;background:var(--surface);border:1px solid var(--border2);border-radius:7px;color:var(--text2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;}
+    .inv-btn:active{background:var(--blue-dim);color:var(--blue);}
+    /* pack toggle in sheet */
+    .pack-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;margin-bottom:14px;}
+    .pack-toggle-label{font-size:14px;font-weight:500;color:var(--text);}
+    .toggle-switch{width:46px;height:26px;background:var(--border2);border-radius:20px;position:relative;cursor:pointer;transition:background 0.2s;border:none;flex-shrink:0;}
+    .toggle-switch.on{background:var(--blue);}
+    .toggle-switch::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform 0.2s;}
+    .toggle-switch.on::after{transform:translateX(20px);}
+    .pack-fields{display:none;}
+    .pack-fields.show{display:block;}
+    .num-input{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:13px 14px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;-webkit-appearance:none;}
+    .num-input:focus{border-color:var(--blue);}
+    /* generic modal */
+    .mini-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:60;display:none;align-items:center;justify-content:center;padding:24px;}
+    .mini-modal-bg.open{display:flex;}
+    .mini-modal{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:22px;width:100%;max-width:320px;}
+    .mini-modal h3{font-size:16px;font-weight:600;margin-bottom:16px;}
+    .mini-modal-row{display:flex;gap:8px;margin-top:16px;}
+    .mini-btn{flex:1;border-radius:12px;padding:12px;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;}
+    .mini-btn.cancel{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);}
+    .mini-btn.confirm{background:var(--blue);color:#fff;}
+    .strip-pick-btn{width:100%;text-align:right;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:14px;font-size:14px;font-weight:500;color:var(--text);cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+    .strip-pick-btn:active{background:var(--blue-dim);border-color:var(--blue);}
   </style>
 </head>
 <body>
@@ -165,20 +216,97 @@
     </div>
     <div class="freq-hint" id="freq-hint">Once daily</div>
   </div>
+  <div class="pack-toggle-row">
+    <span class="pack-toggle-label">Track blister packs</span>
+    <button class="toggle-switch" id="pack-toggle" onclick="togglePack()"></button>
+  </div>
+  <div class="pack-fields" id="pack-fields">
+    <div class="field">
+      <label>Pills per strip</label>
+      <input type="number" inputmode="numeric" class="num-input" id="pack-size" placeholder="e.g. 7" />
+    </div>
+    <div class="field">
+      <label>Strips currently on hand</label>
+      <input type="number" inputmode="numeric" class="num-input" id="pack-onhand" placeholder="e.g. 4" />
+    </div>
+    <div class="field">
+      <label>Warn me when strips drop to</label>
+      <input type="number" inputmode="numeric" class="num-input" id="pack-threshold" placeholder="e.g. 2" />
+    </div>
+  </div>
   <button class="save-btn" id="save-btn" onclick="saveMed()" disabled>Save medication</button>
+</div>
+
+<!-- STRIP PICKER MODAL -->
+<div class="mini-modal-bg" id="strip-pick-modal">
+  <div class="mini-modal">
+    <h3 id="strip-pick-title">Which strip did you use?</h3>
+    <div id="strip-pick-list"></div>
+    <div class="mini-modal-row">
+      <button class="mini-btn cancel" onclick="closeStripPick()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- GENERIC CONFIRM MODAL -->
+<div class="mini-modal-bg" id="confirm-modal">
+  <div class="mini-modal">
+    <h3 id="confirm-title">Are you sure?</h3>
+    <div style="font-size:13px;color:var(--text2);line-height:1.5" id="confirm-msg"></div>
+    <div class="mini-modal-row">
+      <button class="mini-btn cancel" onclick="closeConfirm()">Cancel</button>
+      <button class="mini-btn confirm" id="confirm-ok">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT STRIP MODAL -->
+<div class="mini-modal-bg" id="edit-strip-modal">
+  <div class="mini-modal">
+    <h3>Edit strip</h3>
+    <div class="field">
+      <label>Label</label>
+      <input type="text" class="num-input" id="edit-strip-label" placeholder="e.g. Home" style="font-family:'DM Sans',sans-serif" />
+    </div>
+    <div class="field">
+      <label>Pills used from this strip</label>
+      <input type="number" inputmode="numeric" class="num-input" id="edit-strip-used" />
+    </div>
+    <div class="pack-toggle-row" style="margin-top:4px;margin-bottom:0">
+      <div>
+        <span class="pack-toggle-label">Auto-renew</span>
+        <div style="font-size:11px;color:var(--text3);margin-top:2px">Always keep one open here</div>
+      </div>
+      <button class="toggle-switch" id="edit-strip-renew" onclick="toggleStripRenew()"></button>
+    </div>
+    <div class="mini-modal-row">
+      <button class="mini-btn cancel" onclick="closeEditStrip()">Cancel</button>
+      <button class="mini-btn confirm" onclick="saveEditStrip()">Save</button>
+    </div>
+    <button class="reset-link" onclick="deleteStripFromEdit()" style="color:var(--red);margin-top:12px">Remove this strip</button>
+  </div>
 </div>
 
 <script>
   const MEDS_KEY = 'medtrack_meds_v2';
   const LOG_KEY  = 'medtrack_log_v2';
   const HIST_KEY = 'medtrack_hist_v1';
+  const SNAP_KEY = 'medtrack_snap_v1';
   const HIST_DAYS = 7;
   let meds = [], todayLog = {}, history = {}, doseCount = 1, currentTab = 'today';
+  let daySnapshot = null;   // morning snapshot of pack state, for reset
+  let packEnabled = false;
+  // transient UI state
+  let pendingDose = null;   // {medId, idx} awaiting strip pick
+  let editStripCtx = null;  // {medId, stripId}
+  let editStripRenew = false;
+  let confirmAction = null; // callback
 
   function todayStr() { return new Date().toLocaleDateString('en-CA'); }
 
   function load() {
     try { meds = JSON.parse(localStorage.getItem(MEDS_KEY) || '[]'); } catch { meds = []; }
+    let isNewDay = false;
     try {
       const s = JSON.parse(localStorage.getItem(LOG_KEY) || '{}');
       if (s.date === todayStr()) {
@@ -187,9 +315,36 @@
         // Archive yesterday before resetting
         if (s.date && s.log) archiveDay(s.date, s.log);
         todayLog = {};
+        isNewDay = true;
       }
-    } catch { todayLog = {}; }
+    } catch { todayLog = {}; isNewDay = true; }
     try { history = JSON.parse(localStorage.getItem(HIST_KEY) || '{}'); } catch { history = {}; }
+
+    // Daily pack snapshot: capture pack state at the first load of each day
+    try {
+      const snap = JSON.parse(localStorage.getItem(SNAP_KEY) || 'null');
+      if (snap && snap.date === todayStr() && !isNewDay) {
+        daySnapshot = snap.packs;
+      } else {
+        takeMorningSnapshot();
+      }
+    } catch { takeMorningSnapshot(); }
+  }
+
+  // Snapshot every med's pack state (deep copy) as "this morning"
+  function takeMorningSnapshot() {
+    daySnapshot = {};
+    meds.forEach(m => {
+      if (m.pack) daySnapshot[m.id] = JSON.parse(JSON.stringify(m.pack));
+    });
+    localStorage.setItem(SNAP_KEY, JSON.stringify({ date: todayStr(), packs: daySnapshot }));
+  }
+
+  // Refresh snapshot for a specific med (used when a pack is first added mid-day)
+  function snapshotMed(med) {
+    if (!daySnapshot) daySnapshot = {};
+    if (med.pack) daySnapshot[med.id] = JSON.parse(JSON.stringify(med.pack));
+    localStorage.setItem(SNAP_KEY, JSON.stringify({ date: todayStr(), packs: daySnapshot }));
   }
 
   function archiveDay(dateStr, log) {
@@ -209,8 +364,7 @@
 
   function fmtTime(iso) {
     const d = new Date(iso);
-    const h = d.getHours(), m = d.getMinutes();
-    return `${h % 12 || 12}:${String(m).padStart(2,'0')}${h < 12 ? 'am' : 'pm'}`;
+    return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
   }
 
   function freqLabel(n) {
@@ -242,9 +396,73 @@
 
   function toggleDose(medId, idx) {
     const k = `${medId}_${idx}`;
-    if (todayLog[k]) { delete todayLog[k]; }
-    else { todayLog[k] = new Date().toISOString(); }
+    const med = meds.find(m => m.id === medId);
+    if (todayLog[k]) {
+      // UNDO — confirm, and give the pill back to its strip
+      const entry = todayLog[k];
+      const stripId = (typeof entry === 'object') ? entry.strip : null;
+      openConfirm('Undo dose?', stripId ? 'The pill will be returned to the strip.' : 'This dose will be un-marked.', () => {
+        if (stripId && med && med.pack) {
+          const strip = med.pack.strips.find(s => s.id === stripId);
+          if (strip && strip.used > 0) strip.used--;
+        }
+        delete todayLog[k];
+        save(); renderToday();
+      });
+      return;
+    }
+    // MARK taken
+    if (med && med.pack && med.pack.strips.length > 0) {
+      const openStrips = med.pack.strips;
+      if (openStrips.length === 1) {
+        markDoseWithStrip(medId, idx, openStrips[0].id);
+      } else {
+        // prompt which strip
+        pendingDose = { medId, idx };
+        openStripPick(med);
+      }
+    } else {
+      todayLog[k] = new Date().toISOString();
+      save(); renderToday();
+    }
+  }
+
+  function markDoseWithStrip(medId, idx, stripId) {
+    const med = meds.find(m => m.id === medId);
+    const k = `${medId}_${idx}`;
+    todayLog[k] = { ts: new Date().toISOString(), strip: stripId };
+    if (med && med.pack) {
+      const strip = med.pack.strips.find(s => s.id === stripId);
+      if (strip) {
+        strip.used++;
+        // Strip finished?
+        if (strip.used >= med.pack.size) {
+          med.pack.onHand = Math.max(0, med.pack.onHand - 1);
+          const stillPending = dosesPendingToday(med);
+          const label = strip.label;
+          const renew = !!strip.autoRenew;
+          // remove the finished strip
+          med.pack.strips = med.pack.strips.filter(s => s.id !== stripId);
+          // auto-renew strips always reopen (if stock remains); otherwise only reopen if a dose is still pending today
+          const shouldReopen = med.pack.onHand > 0 && (renew || stillPending > 0);
+          if (shouldReopen) {
+            med.pack.strips.push({ id: 'strip_' + Date.now(), label, used: 0, autoRenew: renew });
+          }
+        }
+      }
+    }
     save(); renderToday();
+  }
+
+  // How many doses still need taking today across the whole med
+  function dosesPendingToday(med) {
+    let taken = 0;
+    for (let i = 0; i < med.doses; i++) if (todayLog[`${med.id}_${i}`]) taken++;
+    return Math.max(0, med.doses - taken);
+  }
+
+  function doseTsOf(entry) {
+    return (typeof entry === 'object') ? entry.ts : entry;
   }
 
   function deleteMed(id) {
@@ -254,7 +472,30 @@
     save(); renderToday();
   }
 
-  function resetDay() { todayLog = {}; save(); renderToday(); }
+  function resetDay() {
+    const hasPacks = meds.some(m => m.pack);
+    const msg = hasPacks
+      ? "This clears today's doses and returns all blister packs to how they were this morning."
+      : "This clears today's doses.";
+    openConfirm("Reset today?", msg, () => {
+      todayLog = {};
+      // Restore each med's pack from the morning snapshot
+      if (daySnapshot) {
+        meds.forEach(m => {
+          if (m.pack && daySnapshot[m.id]) {
+            m.pack = JSON.parse(JSON.stringify(daySnapshot[m.id]));
+          }
+        });
+      }
+      save(); renderToday();
+    });
+  }
+
+  function togglePack() {
+    packEnabled = !packEnabled;
+    document.getElementById('pack-toggle').classList.toggle('on', packEnabled);
+    document.getElementById('pack-fields').classList.toggle('show', packEnabled);
+  }
 
   function openSheet() {
     doseCount = 1;
@@ -262,6 +503,12 @@
     document.getElementById('freq-hint').textContent = 'Once daily';
     document.getElementById('med-name-input').value = '';
     document.getElementById('save-btn').disabled = true;
+    packEnabled = false;
+    document.getElementById('pack-toggle').classList.remove('on');
+    document.getElementById('pack-fields').classList.remove('show');
+    document.getElementById('pack-size').value = '';
+    document.getElementById('pack-onhand').value = '';
+    document.getElementById('pack-threshold').value = '';
     document.getElementById('sheet').classList.add('open');
     document.getElementById('backdrop').classList.add('open');
     setTimeout(() => document.getElementById('med-name-input').focus(), 350);
@@ -275,7 +522,20 @@
   function saveMed() {
     const name = document.getElementById('med-name-input').value.trim();
     if (!name) return;
-    meds.push({ id: 'med_' + Date.now(), name, doses: doseCount });
+    const med = { id: 'med_' + Date.now(), name, doses: doseCount };
+    if (packEnabled) {
+      const size = parseInt(document.getElementById('pack-size').value, 10);
+      const onHand = parseInt(document.getElementById('pack-onhand').value, 10);
+      const threshold = parseInt(document.getElementById('pack-threshold').value, 10);
+      med.pack = {
+        size: (!isNaN(size) && size > 0) ? size : 7,
+        onHand: (!isNaN(onHand) && onHand >= 0) ? onHand : 0,
+        threshold: (!isNaN(threshold) && threshold >= 0) ? threshold : 2,
+        strips: []
+      };
+    }
+    meds.push(med);
+    if (med.pack) snapshotMed(med);
     save(); renderToday(); closeSheet();
   }
 
@@ -298,11 +558,11 @@
       const takenCount = Array.from({length: m.doses}, (_,i) => todayLog[`${m.id}_${i}`]).filter(Boolean).length;
       const pct = Math.round(takenCount / m.doses * 100);
       const circles = Array.from({length: m.doses}, (_, i) => {
-        const ts = todayLog[`${m.id}_${i}`];
-        const done = !!ts;
+        const entry = todayLog[`${m.id}_${i}`];
+        const done = !!entry;
         return `<button class="dose-btn ${done ? 'taken-state' : ''}" onclick="toggleDose('${m.id}', ${i})">
           <div class="dose-circle ${done ? 'taken' : 'pending'}"></div>
-          <span class="dose-ts">${done ? fmtTime(ts) : ''}</span>
+          <span class="dose-ts">${done ? fmtTime(doseTsOf(entry)) : ''}</span>
         </button>`;
       }).join('');
       return `<div class="med-card">
@@ -312,9 +572,164 @@
         </div>
         <div class="doses-grid">${circles}</div>
         <div class="prog-wrap"><div class="prog-fill" style="width:${pct}%"></div></div>
+        ${m.pack ? renderStrips(m) : ''}
       </div>`;
     }).join('');
   }
+
+  // ── STRIP RENDERING ────────────────────────────────────────────────────
+  function renderStrips(med) {
+    const pending = dosesPendingToday(med);
+    const stripsHtml = med.pack.strips.map(s => {
+      const orangeEnd = Math.min(med.pack.size, s.used + pending);
+      let pills = '';
+      for (let i = 0; i < med.pack.size; i++) {
+        let cls, tappable = false;
+        if (i < s.used) cls = 'taken';
+        else if (i < orangeEnd) { cls = 'today'; tappable = (i === s.used); }
+        else cls = 'remaining';
+        pills += `<button class="pill ${cls} ${tappable ? 'tappable' : ''}" aria-label="pill ${i+1}" ${tappable ? `onclick="takeFromStrip('${med.id}','${s.id}')"` : 'disabled'}></button>`;
+      }
+      const remaining = med.pack.size - s.used;
+      return `<div class="strip-box">
+        <div class="strip-box-head">
+          <span class="strip-label">📍 ${s.label}${s.autoRenew ? ' <span style="font-size:10px;color:var(--blue)" title="Auto-renew">↻</span>' : ''}</span>
+          <div class="strip-actions">
+            <span class="strip-remaining">${remaining}/${med.pack.size}</span>
+            <button class="strip-mini-btn" onclick="openEditStrip('${med.id}','${s.id}')" title="Edit">✎</button>
+          </div>
+        </div>
+        <div class="pills-grid">${pills}</div>
+      </div>`;
+    }).join('');
+
+    const low = med.pack.onHand <= med.pack.threshold;
+    const invHtml = `<div class="strip-inventory ${low ? 'low' : ''}">
+      <span class="inv-label">${low ? '⚠️ ' : ''}${med.pack.onHand} strips on hand${low ? ' — buy more' : ''}</span>
+      <div class="inv-controls">
+        <button class="inv-btn" onclick="adjustInventory('${med.id}',-1)">−</button>
+        <span class="inv-count">${med.pack.onHand}</span>
+        <button class="inv-btn" onclick="adjustInventory('${med.id}',1)">+</button>
+      </div>
+    </div>`;
+
+    return `<div class="strips-section">
+      <div class="strips-head">
+        <span class="strips-title">Blister packs</span>
+        <button class="strip-add-btn" onclick="addStrip('${med.id}')">+ Open strip</button>
+      </div>
+      ${stripsHtml || '<div style="font-size:12px;color:var(--text3);padding:8px 0">No open strips. Tap "Open strip" to start one.</div>'}
+      ${invHtml}
+    </div>`;
+  }
+
+  // Tap a pill directly on the strip → auto-mark next pending dose
+  function takeFromStrip(medId, stripId) {
+    const med = meds.find(m => m.id === medId);
+    if (!med) return;
+    // find next un-taken dose index
+    let idx = -1;
+    for (let i = 0; i < med.doses; i++) { if (!todayLog[`${med.id}_${i}`]) { idx = i; break; } }
+    if (idx === -1) return; // all taken
+    markDoseWithStrip(medId, idx, stripId);
+  }
+
+  function addStrip(medId) {
+    const med = meds.find(m => m.id === medId);
+    if (!med || !med.pack) return;
+    const n = med.pack.strips.length + 1;
+    const label = prompt('Strip label (e.g. Home, Work):', `Strip ${n}`);
+    if (label === null) return;
+    med.pack.strips.push({ id: 'strip_' + Date.now(), label: label.trim() || `Strip ${n}`, used: 0 });
+    save(); renderToday();
+  }
+
+  function adjustInventory(medId, delta) {
+    const med = meds.find(m => m.id === medId);
+    if (!med || !med.pack) return;
+    med.pack.onHand = Math.max(0, med.pack.onHand + delta);
+    save(); renderToday();
+  }
+
+  // ── STRIP PICK MODAL ───────────────────────────────────────────────────
+  function openStripPick(med) {
+    const pending = dosesPendingToday(med);
+    document.getElementById('strip-pick-list').innerHTML = med.pack.strips.map(s => {
+      const remaining = med.pack.size - s.used;
+      return `<button class="strip-pick-btn" onclick="pickStrip('${s.id}')">
+        <span>📍 ${s.label}</span>
+        <span style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace">${remaining}/${med.pack.size}</span>
+      </button>`;
+    }).join('');
+    document.getElementById('strip-pick-modal').classList.add('open');
+  }
+  function pickStrip(stripId) {
+    if (pendingDose) {
+      markDoseWithStrip(pendingDose.medId, pendingDose.idx, stripId);
+      pendingDose = null;
+    }
+    closeStripPick();
+  }
+  function closeStripPick() {
+    document.getElementById('strip-pick-modal').classList.remove('open');
+    pendingDose = null;
+  }
+
+  // ── EDIT STRIP MODAL ───────────────────────────────────────────────────
+  function openEditStrip(medId, stripId) {
+    const med = meds.find(m => m.id === medId);
+    const strip = med.pack.strips.find(s => s.id === stripId);
+    if (!strip) return;
+    editStripCtx = { medId, stripId };
+    editStripRenew = !!strip.autoRenew;
+    document.getElementById('edit-strip-label').value = strip.label;
+    document.getElementById('edit-strip-used').value = strip.used;
+    document.getElementById('edit-strip-renew').classList.toggle('on', editStripRenew);
+    document.getElementById('edit-strip-modal').classList.add('open');
+  }
+  function toggleStripRenew() {
+    editStripRenew = !editStripRenew;
+    document.getElementById('edit-strip-renew').classList.toggle('on', editStripRenew);
+  }
+  function saveEditStrip() {
+    if (!editStripCtx) return;
+    const med = meds.find(m => m.id === editStripCtx.medId);
+    const strip = med.pack.strips.find(s => s.id === editStripCtx.stripId);
+    const label = document.getElementById('edit-strip-label').value.trim();
+    let used = parseInt(document.getElementById('edit-strip-used').value, 10);
+    if (isNaN(used) || used < 0) used = 0;
+    if (used > med.pack.size) used = med.pack.size;
+    strip.label = label || strip.label;
+    strip.used = used;
+    strip.autoRenew = editStripRenew;
+    save(); renderToday(); closeEditStrip();
+  }
+  function deleteStripFromEdit() {
+    if (!editStripCtx) return;
+    const med = meds.find(m => m.id === editStripCtx.medId);
+    med.pack.strips = med.pack.strips.filter(s => s.id !== editStripCtx.stripId);
+    save(); renderToday(); closeEditStrip();
+  }
+  function closeEditStrip() {
+    document.getElementById('edit-strip-modal').classList.remove('open');
+    editStripCtx = null;
+  }
+
+  // ── CONFIRM MODAL ──────────────────────────────────────────────────────
+  function openConfirm(title, msg, onOk) {
+    document.getElementById('confirm-title').textContent = title;
+    document.getElementById('confirm-msg').textContent = msg;
+    confirmAction = onOk;
+    document.getElementById('confirm-modal').classList.add('open');
+  }
+  function closeConfirm() {
+    document.getElementById('confirm-modal').classList.remove('open');
+    confirmAction = null;
+  }
+  document.getElementById('confirm-ok').addEventListener('click', () => {
+    if (confirmAction) confirmAction();
+    closeConfirm();
+  });
 
   function renderHistory() {
     const list = document.getElementById('hist-list');
@@ -332,9 +747,9 @@
 
       const cards = meds.map(m => {
         const doses = Array.from({length: m.doses}, (_, i) => {
-          const ts = log[`${m.id}_${i}`];
-          return ts
-            ? `<span class="hist-dose taken">${fmtTime(ts)}</span>`
+          const entry = log[`${m.id}_${i}`];
+          return entry
+            ? `<span class="hist-dose taken">${fmtTime(doseTsOf(entry))}</span>`
             : `<span class="hist-dose missed">missed</span>`;
         }).join('');
         return `<div class="hist-card">
