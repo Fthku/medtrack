@@ -55,6 +55,10 @@
     .med-meta{font-size:12px;color:var(--text3);margin-top:2px;font-family:'DM Mono',monospace;}
     .del-btn{width:30px;height:30px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
     .del-btn:active{background:var(--red-dim);color:var(--red);border-color:rgba(244,100,95,0.3);}
+    .med-actions{display:flex;gap:6px;flex-shrink:0;}
+    .move-btn{width:30px;height:30px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;}
+    .move-btn:active{background:var(--blue-dim);color:var(--blue);border-color:rgba(79,156,249,0.3);}
+    .move-btn:disabled{opacity:0.25;cursor:default;}
     .doses-grid{display:flex;flex-wrap:wrap;gap:12px;}
     .dose-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;}
     .dose-circle{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.12s cubic-bezier(0.34,1.56,0.64,1);}
@@ -465,6 +469,14 @@
     return (typeof entry === 'object') ? entry.ts : entry;
   }
 
+  function moveMed(id, dir) {
+    const i = meds.findIndex(m => m.id === id);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= meds.length) return;
+    [meds[i], meds[j]] = [meds[j], meds[i]];
+    save(); renderToday();
+  }
+
   function deleteMed(id) {
     if (!confirm('Remove this medication?')) return;
     meds = meds.filter(m => m.id !== id);
@@ -554,7 +566,7 @@
       list.innerHTML = `<div class="empty"><div class="empty-icon">💊</div><h2>No medications yet</h2><p>Tap the button below to add your first one</p></div>`;
       return;
     }
-    list.innerHTML = meds.map(m => {
+    list.innerHTML = meds.map((m, mi) => {
       const takenCount = Array.from({length: m.doses}, (_,i) => todayLog[`${m.id}_${i}`]).filter(Boolean).length;
       const pct = Math.round(takenCount / m.doses * 100);
       const circles = Array.from({length: m.doses}, (_, i) => {
@@ -568,7 +580,11 @@
       return `<div class="med-card">
         <div class="med-top">
           <div><div class="med-name">${m.name}</div><div class="med-meta">${freqLabel(m.doses)} · ${takenCount}/${m.doses} taken</div></div>
-          <button class="del-btn" onclick="deleteMed('${m.id}')">✕</button>
+          <div class="med-actions">
+            <button class="move-btn" aria-label="Move up" onclick="moveMed('${m.id}',-1)" ${mi === 0 ? 'disabled' : ''}>▲</button>
+            <button class="move-btn" aria-label="Move down" onclick="moveMed('${m.id}',1)" ${mi === meds.length - 1 ? 'disabled' : ''}>▼</button>
+            <button class="del-btn" onclick="deleteMed('${m.id}')">✕</button>
+          </div>
         </div>
         <div class="doses-grid">${circles}</div>
         <div class="prog-wrap"><div class="prog-fill" style="width:${pct}%"></div></div>
